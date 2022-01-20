@@ -30,4 +30,4 @@
 Please follow [these instructions](Setup.md) exactly to set up your fork of this repository.
 
 
-readme updated right anothe
+readme updated right anoth
