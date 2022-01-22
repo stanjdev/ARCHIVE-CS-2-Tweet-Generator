@@ -3,6 +3,7 @@ import random
 
 # random.randint()
 # OR, can randomly select 7 indexes, pull those out of the list and return those
+# Refactor this so it can take ANY file as the second terminal argument
 
 def read_file():
   # f = open('words.txt', 'r')
