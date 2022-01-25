@@ -24,23 +24,32 @@ def histogram_dict(source_text):
 
 
 
-# FREEZES. Too slow? Or stuck???
+# python implementation: https://stackoverflow.com/questions/48774616/return-the-value-of-a-matching-item-in-a-python-list
 def histogram_list(source_text):
   lst = []
   for word in source_text:
-    if len(lst) > 0:
-      for pair in lst:
-        if word in pair:
-          pair[1] += 1
-          continue
-    lst.append([word, 1])
+    found_pair = next((pair for pair in lst if word in pair), None)
+    if found_pair is not None:
+      found_pair[1] += 1
+    else: lst.append([word, 1])
   return lst
 
 
 
-
+# NEEDS IMPROVEMENT - immutable data structure.
 def histogram_tuple(source_text):
-  pass
+  tuple_list = []
+  for word in source_text:
+    found_pair = next((pair for pair in tuple_list if word in pair), None)
+    if found_pair is not None:
+      tuple_list.remove(found_pair)
+      amount = found_pair[1]
+      temp_list = list(found_pair)
+      temp_list[1] = amount + 1
+      found_pair = tuple(temp_list)
+      tuple_list.append(found_pair)
+    else: tuple_list.append((word, 1))
+  return tuple_list
 
 
 def unique_words(dict):
@@ -64,13 +73,16 @@ def frequency(word, histogram):
 
 
 if __name__ == '__main__':
-  corpus_list = read_file(file).replace(',', '').replace('.', '').lower().split()
+  corpus_list = read_file(file).replace(',', '').replace('.', '').replace('?', '').lower().split()
   
   # histogram_dictionary = histogram_dict(corpus_list)
   # print(histogram_dictionary)
   # print(unique_words(histogram_dictionary))
 
-  histogram_list = histogram_list(corpus_list)
-  print(histogram_list)
+  # hist_list = histogram_list(corpus_list)
+  # print(hist_list)
+  # print(unique_words(hist_list))
 
-
+  hist_tuple = histogram_tuple(corpus_list)
+  print(hist_tuple)
+  # print(unique_words(hist_tuple))
