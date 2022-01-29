@@ -84,7 +84,7 @@ def frequency(word, histogram):
 
 
 if __name__ == '__main__':
-  corpus_list = read_file(file).replace(',', '').replace('.', '').replace('?', '').replace('"', '').replace('!', '').replace('/', '').replace(';', '').lower().split()
+  corpus_list = read_file(file).replace(',', '').replace('.', '').replace('?', '').replace('"', '').replace('”', '').replace('’', '').replace('!', '').replace('/', '').replace(';', '').lower().split()
   
   histogram_dictionary = histogram_dict(corpus_list)
   print(histogram_dictionary)
